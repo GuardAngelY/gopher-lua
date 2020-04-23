@@ -127,10 +127,11 @@ func (st LString) Format(f fmt.State, c rune) {
 }
 
 func (nm LNumber) String() string {
-	if isInteger(nm) {
-		return fmt.Sprint(int64(nm))
-	}
-	return fmt.Sprint(float64(nm))
+	return fmt.Sprintf("%.14g", nm)
+	// if isInteger(nm) {
+	// 	return fmt.Sprint(int64(nm))
+	// }
+	// return fmt.Sprint(float64(nm))
 }
 
 func (nm LNumber) Type() LValueType                   { return LTNumber }
