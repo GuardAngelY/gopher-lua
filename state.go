@@ -7,7 +7,7 @@ package lua
 import (
 	"context"
 	"fmt"
-	"github.com/guardangely/gopher-lua/parse"
+	"github.com/yuin/gopher-lua/parse"
 	"io"
 	"math"
 	"os"

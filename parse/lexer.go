@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/guardangely/gopher-lua/ast"
+	"github.com/yuin/gopher-lua/ast"
 )
 
 const EOF = -1
@@ -36,7 +36,7 @@ func writeChar(buf *bytes.Buffer, c int) { buf.WriteByte(byte(c)) }
 func isDecimal(ch int) bool { return '0' <= ch && ch <= '9' }
 
 func isIdent(ch int, pos int) bool {
-	return ch == '_' || 'A' <= ch && ch <= 'Z' || 'a' <= ch && ch <= 'z' || ch > 0x80 || isDecimal(ch) && pos > 0
+	return ch == '_' || 'A' <= ch && ch <= 'Z' || 'a' <= ch && ch <= 'z' || ch >= 0x80 || isDecimal(ch) && pos > 0
 }
 
 func isDigit(ch int) bool {
