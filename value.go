@@ -3,6 +3,7 @@ package lua
 import (
 	"context"
 	"fmt"
+	"math"
 	"os"
 )
 
@@ -76,6 +77,27 @@ func LVAsNumber(v LValue) LNumber {
 		}
 	}
 	return LNumber(0)
+}
+
+func LVToFloat64(v LValue) float64 {
+	switch lv := v.(type) {
+	case LBool:
+		if lv {
+			return 1
+		}
+		return 0
+	case LNumber:
+		return float64(lv)
+	case LString:
+		if lv == "" {
+			break
+		}
+
+		if num, err := parseNumber(string(lv)); err == nil {
+			return float64(num)
+		}
+	}
+	return math.NaN()
 }
 
 type LNilType struct{}

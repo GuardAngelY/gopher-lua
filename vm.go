@@ -1666,6 +1666,11 @@ func lessThan(L *LState, lhs, rhs LValue) bool {
 
 func equals(L *LState, lhs, rhs LValue, raw bool) bool {
 	if lhs.Type() != rhs.Type() {
+		if lhs.Type() != LTString || rhs.Type() != LTString {
+			x, y := LVToFloat64(lhs), LVToFloat64(rhs)
+			return x == y
+		}
+
 		return false
 	}
 
